@@ -1,7 +1,7 @@
 const Usuario= require('../models/Usuario');
 
 
-function mostrarUsuarios(req, res){
+function crearUsuario(req, res){
   return 'lista de usuarios';
 }
 
@@ -18,7 +18,7 @@ function eliminarUsuario(req, res){
 }
 
 module.exports={
-  mostrarUsuarios,
+  crearUsuario,
   obtenerUsuario,
   editarUsuario,
   eliminarUsuario
