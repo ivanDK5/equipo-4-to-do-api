@@ -7,7 +7,6 @@ router.get('/', (req, res)=>{
   res.send('Bienvenido a To-Do');
 });
 
-
 router.use('/usuarios',require('./usuarios'));
 router.use('/tareas', require('./tareas'));
 router.use('/proyectos', require('./proyectos'));
