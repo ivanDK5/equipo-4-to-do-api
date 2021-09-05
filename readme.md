@@ -1,7 +1,18 @@
 # Desarrollo Web Full Stack JavaScript
 ## Proyecto de Backend Fundamentals
 
-Consiste en la creación de una API con la temática de una to do list. El alcance esperado es **por definir**
+### *Temática*
+API orientada a una la administración de tareas/actividades, como una to-do list. 
+
+### *Alcance*
+Tener una aplicación que permita introducir tareas dentro de un proyecto, y que estas a la vez tengan un ambiente determinado 
+de trabajo con jererquía de:
+
+proyecto => entorno => tarea
+
+Hay un usuario que es el administrador del proyecto con permisos elevados como crear proyectos, asignar tareas, eliminar 
+proyectos y entornos, entre otros, y un usuario (miembro) que puede consultar el listado de tareas e interactuar con las 
+tareas que el administrador le asigna.
 
 ### *Equipo 4*
 * José Ramón Carreño García
@@ -9,11 +20,12 @@ Consiste en la creación de una API con la temática de una to do list. El alcan
 * Alicia Flores Flores
 * Iván Gutiérrez Elizalde
 
-## Entrega de Mitad de Módulo
+# Entrega de Mitad de Módulo
+## Estructura del Proyecto
 ### *Entidades*
 
 <p align="center">
-  <img src="img/Usuario-definicion.PNG" alt="Definición de usuarios" heigth="200px" width="200px">;
+  <img src="img/Usuario-definicion.PNG" alt="Definición de usuarios" heigth="300px" width="300px">
 </p>
 
 En la aplicación interactuán ususarios de forma general, sin embargo, estos mismos se dividen en dos (miembro 
@@ -55,11 +67,11 @@ es decir, tienen permisos establecidos dentro de la aplicación.
   
 ### *Casos de uso*
 <p align="center">
-  <img src="img/Casos de Uso-To-do.png" alt="Casos de Uso-To Do" heigth="500px" width="500px">;
+  <img src="img/Casos de Uso-To-do.png" alt="Casos de Uso-To Do" heigth="500px" width="500px">
 </p>
 
-### *Descripción Técnica*
-# Instrucciones
+## Descripción Técnica
+### Instrucciones
 Para clonar este repositorio se debe abrir la consola y ejecutar los siguientes comandos:
 
 ```git
@@ -78,11 +90,14 @@ npm run start
 
 `npm run start` es el script para ejecutar el servidor
 
-## Body Parser
+### Herramientas
+### *Body Parser*
 Extrae toda la parte del cuerpo de una secuencia de solicitud entrante.
-## Express
+
+### *Express*
 Framework para node.
-## Cors
+
+### *Cors*
 Sumistra un middleware a Connect/Express que puedo utilizarse para habilitar el control de acceso CORS.
 
 Para instalar estas dependencias:
@@ -92,5 +107,5 @@ Para instalar estas dependencias:
 ```javascript
 npm install express body-parser cors ...todas las dependencias separadas por espacio
 ```
-## MongoDB
+### *MongoDB*
 Es una base de datos de documentos que ofrece una gran escalabilidad y flexibilidad, y un modelo de consultas e indexación avanzado.
