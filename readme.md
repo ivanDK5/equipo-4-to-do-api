@@ -13,7 +13,7 @@ Consiste en la creación de una API con la temática de una to do list. El alcan
 ### *Entidades*
 
 <p align="center">
-  <img src="img/Usuario-definicion.png" alt="Definición de usuarios" heigth="200px" width="200px">;
+  <img src="img/Usuario-definicion.PNG" alt="Definición de usuarios" heigth="200px" width="200px">;
 </p>
 
 En la aplicación interactuán ususarios de forma general, sin embargo, estos mismos se dividen en dos (miembro 
@@ -55,7 +55,7 @@ es decir, tienen permisos establecidos dentro de la aplicación.
   
 ### *Casos de uso*
 <p align="center">
-  <img src="img/Casos de Uso-To-do.png" alt="Casos de Uso-To Do" heigth="200px" width="200px">;
+  <img src="img/Casos de Uso-To-do.png" alt="Casos de Uso-To Do" heigth="500px" width="500px">;
 </p>
 
 ### *Descripción Técnica*
