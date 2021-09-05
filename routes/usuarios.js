@@ -6,7 +6,7 @@ const {
   eliminarUsuario
 } = require('../controllers/usuario');
 
-router.get('/',crearUsuario);
+router.get('/',obtenerUsuarios);
 router.post('/',crearUsuario);
 router.put('/:id',editarUsuario);
 router.delete('/:id',eliminarUsuario);

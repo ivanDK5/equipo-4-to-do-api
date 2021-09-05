@@ -2,24 +2,24 @@ const Usuario= require('../models/Usuario');
 
 
 function crearUsuario(req, res){
-  return 'lista de usuarios';
+  res.send('crearUsuario');
 }
 
-function obtenerUsuario(req, res){
-  return 'obtenerUsuario';
+function obtenerUsuarios(req, res){
+  res.send('obtenerUsuario');
 }
 
 function editarUsuario(req, res){
-  return 'editarUsuario';
+  res.send('editarUsuario');
 }
 
 function eliminarUsuario(req, res){
-  return 'eliminar usuario';
+  res.send('eliminarUsuario');
 }
 
 module.exports={
   crearUsuario,
-  obtenerUsuario,
+  obtenerUsuarios,
   editarUsuario,
   eliminarUsuario
 }
