@@ -10,6 +10,8 @@ router.get('/', (req, res)=>{
 router.use('/usuarios',require('./usuarios'));
 router.use('/tareas', require('./tareas'));
 router.use('/proyectos', require('./proyectos'));
+router.use('/contextos', require('./contextos'));
+router.use('/estatus', require('./estatus'));
 
 // exportamos nuestro nuevo router
 module.exports = router;
