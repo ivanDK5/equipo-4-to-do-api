@@ -1,10 +1,10 @@
 const mongoose =require('mongoose');
-const RolSchema =new mongoose.Schema({
+const rolSchema =new mongoose.Schema({
   nombre:{type:String,required:true},
   descripcion:{type:String,required:true}
 },{collection:'roles',timestamps:true});
 
-RolSchema.methods.publicData=()=>{
+rolSchema.methods.publicData=()=>{
   return{
     id:this.id,
     nombre:this.nombre,
@@ -12,4 +12,4 @@ RolSchema.methods.publicData=()=>{
   }
 }
 
-mongoose.model('Rol',RolSchema);
+mongoose.model('Rol',rolSchema);
