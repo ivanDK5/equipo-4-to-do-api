@@ -22,25 +22,18 @@ function obtenerRoles(req,res,next){
 }
 
 function modificarRol(req,res,next){
-  Rol.findById(req.params.id)
+  Rol.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
   .then(rol=>{
-    if(!rol){
-      return res.sendStatus(401);
-    }
-    
-    rol.save()
-    .then(rol=>{
-      res.status(200).json(rol.publicData())
-    }).catch(next);
-
-  })
-
+    res.status(200).json(rol.publicData())
+  }).catch(next)
+ 
 }
 
 
 function eliminarRol(req,res,next){
   Rol.findByIdAndDelete({_id:req.params.id})
-  .then(rol=>{res.status(200).send('Rol eliminado')})
+  .then(rol=>{res.status(200).json({rol:rol.publicData(),msj:'Rol eliminado'})})
+    .catch(next)
 
 }
 
