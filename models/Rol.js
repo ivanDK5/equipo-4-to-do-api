@@ -4,12 +4,11 @@ const rolSchema =new mongoose.Schema({
   descripcion:{type:String,required:true}
 },{collection:'roles',timestamps:true});
 
-rolSchema.methods.publicData=()=>{
-  return{
-    id:this.id,
-    nombre:this.nombre,
-    descripcion:this.descripcion,
-  }
+rolSchema.methods.publicData=function() {
+  
+  const {_id,nombre,descripcion}=this.toObject();
+  
+  return {nombre:nombre,descripcion:descripcion,id:_id};
 }
 
 mongoose.model('Rol',rolSchema);
