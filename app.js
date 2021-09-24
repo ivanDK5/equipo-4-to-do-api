@@ -3,6 +3,7 @@ if(process.env.NODE_ENV!=='production'){
 }
 
 const mongoose=require('mongoose');
+require('./models/Rol')
 const express = require('express');
 const app = express();
 

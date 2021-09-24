@@ -12,6 +12,7 @@ router.use('/tareas', require('./tareas'));
 router.use('/proyectos', require('./proyectos'));
 router.use('/contextos', require('./contextos'));
 router.use('/estatus', require('./estatus'));
+router.use('/roles',require('./roles'));
 
 // exportamos nuestro nuevo router
 module.exports = router;
