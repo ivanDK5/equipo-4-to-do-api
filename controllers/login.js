@@ -26,6 +26,8 @@ function login(req,res,next){
     if(err){return next(err)}
     if(user){
       user.token=user.generaJWT();
+      const {email,username,token}=user;
+      return res.status(200).json({username:username,email:email,token:token})
     }else{
       return res.status(422).json(info);
     }
