@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const EstatusSchema = new mongoose.Schema({
+const TagSchema = new mongoose.Schema({
   nombre: {type: String, required: true}, 
   descripcion: {type: String, required: true}, 
   fechaAlta: { type: Date },
   fechaBaja: { type: Date },
-  }, { timestamps: true , collection : 'estatus'})
+  }, { timestamps: true , collection : 'tags'})
 
-  EstatusSchema.methods.publicData = function() {
+  TagSchema.methods.publicData = function() {
     return {
       id: this.id,
       nombre: this.nombre,
@@ -17,4 +17,4 @@ const EstatusSchema = new mongoose.Schema({
       };
   };
   
-  mongoose.model('Estatus', EstatusSchema)
+  mongoose.model('Tag', TagSchema)
