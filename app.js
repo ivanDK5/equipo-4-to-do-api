@@ -6,6 +6,8 @@ const mongoose=require('mongoose');
 require('./models/Usuario');
 require('./config/passport');
 require('./models/Rol')
+require('./models/Estatus')
+require('./models/Tag')
 const express = require('express');
 const app = express();
 

@@ -1,26 +1,48 @@
-const Estatus = require('../models/Estatus')
+const mongoose = require('mongoose')
+const Estatus = mongoose.model('Estatus')
 
 //CRUD
-function crearEstatus(req,res){
-    var Estatus= new Estatus(req.body);
-    res.status(200).send(Estatus);
+function crearEstatus(req, res, next) {
+    var estatus = new Estatus(req.body)
+    estatus.save().then(estatus => {
+        res.status(200).send(estatus)
+    }).catch(next)
 }
 
-function obtenerEstatus(req,res){
-    var Estatus1 = new Estatus(1,"Activo","Actividades a realizar en casa","05/Sep/2021")// en este ejemplo se da de alta nuevo Estatus
-    var Estatus2 = new Estatus(2,"Ocio","Tareas o actividades a realizar en tiempo libre","05/Sep/2021")// en este ejemplo se da de alta nuevo Estatus
-    res.send([Estatus1,Estatus2])
+function obtenerEstatus(req, res, next) {
+    if (req.params.id) {
+        Estatus.findById(req.params.id).then(estatus => {
+            res.send(estatus)
+        }).catch(next)
+    } else {
+        Estatus.find().then(estatus => {
+            res.send(estatus)
+        }).catch(next)
+    }
 }
 
-function modificarEstatus(req,res){
-    var Estatus = new Estatus(req.params.id)//aquí se colocan los parámetros a modificar
-    var modificaciones = req.body
-    Estatus = {...Estatus,...modificaciones}
-    res.send(Estatus)
+function modificarEstatus(req, res, next) {
+    Estatus.findById(req.params.id).then(estatus => {
+        if (!estatus) { return res.sendStatus(401); }
+        let nuevaInfo = req.body
+        if (typeof nuevaInfo.nombre !== 'undefined')
+            estatus.nombre = nuevaInfo.nombre
+        if (typeof nuevaInfo.descripcion !== 'undefined')
+            estatus.descripcion = nuevaInfo.descripcion
+        if (typeof nuevaInfo.fechaAlta !== 'undefined')
+            estatus.fechaAlta = nuevaInfo.fechaAlta
+        if (typeof nuevaInfo.fechaBaja !== 'undefined')
+            estatus.fechaBaja = nuevaInfo.fechaBaja
+        estatus.save().then(updated => {
+            res.status(201).json(updated.publicData())
+        }).catch(next)
+    }).catch(next)
 }
 
-function eliminarEstatus(req,res){
-    res.status(200).send(`El Estatus ${req.params.id} se eliminó`)
+function eliminarEstatus(req, res, next) {
+    Estatus.findOneAndDelete({ _id: req.params.id }).then(r => {
+        res.status(200).send(`El estatus ${req.params.id} se eliminó: ${r}`);
+    })
 }
 
 module.exports = {
@@ -29,4 +51,6 @@ module.exports = {
     modificarEstatus,
     eliminarEstatus,
 }
+
+
 
