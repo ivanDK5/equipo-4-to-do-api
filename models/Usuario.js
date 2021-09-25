@@ -7,7 +7,7 @@ const UsuarioSchema = new mongoose.Schema({
   username: {type:String,
     unique:true,
     required:[true,'No puede estar vacio el campo username'],
-    match:[/^[A-Za-z0-9]+$/, 'username invalido'],
+    match:[/^[A-Za-z]+[0-9]*[A-Za-z0-9]*$/, 'username invalido'],
     index:true
   },
   nombre: {type:String,required:true},
@@ -16,7 +16,7 @@ const UsuarioSchema = new mongoose.Schema({
   email: {type:String, unique:[true,'falta email'],match:[/\S+@\S+.\S+/, "Email invalido"],index:true},
   telefono:{type:Number,match:[/[0-9]+$/,'Telefono no valido']},
   genero:{type:String,enum:['M','F'],uppercase:[true,'Requiere uso de mayusculas'],required:true},
-  rol:{type:mongoose.Schema.Types.ObjectId,ref:'Rol',required:true,enum:['admin','miembro']},
+  rol:{type:mongoose.Schema.Types.ObjectId,ref:'Rol',required:true},
   hash:String,
   salt:String
 },{collection:'users',timestamps:true});
@@ -33,6 +33,8 @@ UsuarioSchema.methods.publicData = function(){
     apellidoPaterno,
     apellidoMaterno,
     genero, 
+    rol_id,
+    
   }=this.toObject();
   return {
     id:_id,
@@ -42,7 +44,8 @@ UsuarioSchema.methods.publicData = function(){
     nombre:nombre,
     apellidoPaterno:apellidoPaterno,
     apellidoMaterno:apellidoMaterno,
-    genero:genero
+    genero:genero,
+    rol:rol_id
   }
 }
 
