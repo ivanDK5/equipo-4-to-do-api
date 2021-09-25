@@ -1,10 +1,10 @@
-const router = require('express').Router;
+const router = require('express').Router();
 const {
     crearEstatus,
     obtenerEstatus,
     modificarEstatus,
     eliminarEstatus,
-} = require('../controllers/Estatuss')
+} = require('../controllers/estatus')
 
 router.get('/',obtenerEstatus);
 router.post('/',crearEstatus);

@@ -5,15 +5,15 @@ const {
     consultarListaProyecto,
     editarProyecto,
     eliminarProyecto,
-    asignarProyecto,
+    asignarTareas,
     recibirProyecto
-} = require('../controllers/proyectos')
+} = require('../controllers/proyectos');
 
 router.post('/',crearProyecto);
 router.get('/',consultarListaProyecto);
 router.put('/:id',editarProyecto);
 router.delete('/:id',eliminarProyecto);
-router.post('/',asignarProyecto);
+router.post('/',asignarTareas);
 router.get('/',recibirProyecto);
 
 module.exports = router;

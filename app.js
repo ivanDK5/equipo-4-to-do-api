@@ -3,6 +3,11 @@ if(process.env.NODE_ENV!=='production'){
 }
 
 const mongoose=require('mongoose');
+
+//se agregan los modelos
+require('./models/Tarea');
+require('./models/Proyecto');
+
 const express = require('express');
 const app = express();
 
