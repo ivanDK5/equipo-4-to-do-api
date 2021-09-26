@@ -1,10 +1,9 @@
 const mongoose=require('mongoose');
 const Usuario=mongoose.model('Usuario');
 
-module.exports=(err,req,res,next)=>{
+module.exports=(req,res,next)=>{
  Usuario.findById(req.usuario.id).populate({path:'rol',select:'nombre'})
  .then( user=>{
-  if(err){next(err)}
    if(user){
     const {rol}=user;
     if(rol.nombre==='miembro'){
