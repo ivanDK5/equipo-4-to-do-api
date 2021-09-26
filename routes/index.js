@@ -15,6 +15,7 @@ router.use('/contextos', require('./contextos'));
 router.use('/estatus', require('./estatus'));
 router.use('/roles',require('./roles'));
 router.use('/tags',require('./tags'));
+router.use('/usuarioProyecto', require('./usuarioProyecto'));
 
 // exportamos nuestro nuevo router
 module.exports = router;

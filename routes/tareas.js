@@ -2,13 +2,13 @@ const router = require('express').Router();
 
 const {
     crearTarea,
-    consultarListaTareas,
+    consultarTareas,
     editarTarea,
     eliminarTarea
 } = require('../controllers/tareas');
 
 router.post('/',crearTarea);
-router.get('/',consultarListaTareas);
+router.get('/',consultarTareas);
 router.put('/:id',editarTarea);
 router.delete('/:id',eliminarTarea);
 
