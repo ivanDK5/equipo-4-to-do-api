@@ -4,8 +4,8 @@ const EstatusSchema = new mongoose.Schema({
   nombre: {type: String, required: true}, 
   descripcion: {type: String, required: true}, 
   fechaAlta: { type: Date },
-  fechaBaja: { type: Date },
-  }, { timestamps: true , collection : 'estatus'})
+  fechaBaja: { type: Date }
+  }, { timestamps: true , collection : 'estatus'});
 
   EstatusSchema.methods.publicData = function() {
     const{

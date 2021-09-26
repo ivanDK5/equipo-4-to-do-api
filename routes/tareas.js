@@ -5,8 +5,7 @@ const {
     consultarListaTareas,
     editarTarea,
     eliminarTarea
- 
-} = require('../controllers/tareas')
+} = require('../controllers/tareas');
 
 router.post('/',crearTarea);
 router.get('/',consultarListaTareas);

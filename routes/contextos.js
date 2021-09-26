@@ -3,11 +3,11 @@ const {
     crearContexto,
     obtenerContexto,
     modificarContexto,
-    eliminarContexto,
-} = require('../controllers/contextos')
+    eliminarContexto
+} = require('../controllers/contextos');
 
-router.get('/',obtenerContexto);
 router.post('/',crearContexto);
+router.get('/',obtenerContexto);
 router.put('/:id',modificarContexto);
 router.delete('/:id',eliminarContexto);
 
