@@ -20,9 +20,8 @@ tareas que el administrador le asigna.
 * Alicia Flores Flores
 * Iván Gutiérrez Elizalde
 
-# Entrega de Mitad de Módulo
-## Estructura del Proyecto
-### *Entidades*
+# Estructura del Proyecto
+## Entidades
 
 <p align="center">
   <img src="img/Usuario-definicion.PNG" alt="Definición de usuarios" heigth="300px" width="300px">
@@ -32,7 +31,7 @@ En la aplicación interactuán ususarios de forma general, sin embargo, estos mi
 y administrador de proyecto), ya que ciertas acciones sólo pueden ser llevadas a cabo según el tipo de usuario, 
 es decir, tienen permisos establecidos dentro de la aplicación.
 
-### *Historias de Usuario* 
+## Historias de Usuario
 
 * **Usuario**
 
@@ -65,13 +64,13 @@ es decir, tienen permisos establecidos dentro de la aplicación.
 | administrador | eliminar un proyecto | removerlo de los pendientes en la aplicación |
 
   
-### *Casos de uso*
+## Casos de uso
 <p align="center">
   <img src="img/Casos de Uso-To-do.png" alt="Casos de Uso-To Do" heigth="500px" width="500px">
 </p>
 
-## Descripción Técnica
-### Instrucciones
+# Descripción Técnica
+## Instrucciones
 Para clonar este repositorio se debe abrir la consola y ejecutar los siguientes comandos:
 
 ```git
@@ -91,21 +90,33 @@ npm run start
 `npm run start` es el script para ejecutar el servidor
 
 ### Herramientas
-### *Body Parser*
-Extrae toda la parte del cuerpo de una secuencia de solicitud entrante.
 
-### *Express*
-Framework para node.
-
-### *Cors*
-Sumistra un middleware a Connect/Express que puedo utilizarse para habilitar el control de acceso CORS.
+| Nombre | Descripción |
+| --- | --- |
+| Body Parser | Extrae toda la parte del cuerpo de una secuencia de solicitud entrante |
+| Express | Framework para node |
+| Express-jwt | Middleware de autenticación de JWT |
+| Cors | Middleware a Connect/Express que puede utilizarse para habilitar el control de acceso CORS |
+| Mongoose | Permite escribir consultas para una base de datos de MongooDB |
+| Mongoose-unique-validator | Plugin que añade validación para campos únicos de un esquema de Mongoose |
+| Passport | Framework para gestionar la autenticación (trabaja en combinación de Connect y Express) |
+| Passport-local | Estrategia de passport para autentificar con usuario y contraseña |
+| Jsonwebtoken | Implementación de Token Web JSON (simétrico y asimétrico) |
+| Crypto | Módulo que entrega un algoritmo que realiza cifrado y descifrado de datos.
 
 Para instalar estas dependencias:
 
 `npm install dependencias dependencias`
 
 ```javascript
-npm install express body-parser cors ...todas las dependencias separadas por espacio
+npm install express body-parser cors crypto passport passport-local express-jwt mongoose mongoose-unique-validator  ...todas las dependencias separadas por espacio
 ```
 ### *MongoDB*
 Es una base de datos de documentos que ofrece una gran escalabilidad y flexibilidad, y un modelo de consultas e indexación avanzado.
+
+### Diagrama de Base de Datos
+Diagrama donde se muestra la estructura de la base de datos y sus objetos, al igual que sus propiedades.
+
+<p align="center">
+  <img src="img/bD-Diagrama.png" alt="Diagrama BD" heigth="500px" width="500px">
+</p>
