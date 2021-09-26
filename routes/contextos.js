@@ -6,8 +6,10 @@ const {
     eliminarContexto
 } = require('../controllers/contextos');
 
-router.post('/',crearContexto);
+
 router.get('/',obtenerContexto);
+router.get('/:id', obtenerContexto);
+router.post('/',crearContexto);
 router.put('/:id',modificarContexto);
 router.delete('/:id',eliminarContexto);
 
