@@ -6,6 +6,7 @@ module.exports=(req,res,next)=>{
  .then( user=>{
    if(user){
     const {rol}=user;
+    if(rol.nombre==='admin'){return next()}
     if(rol.nombre==='miembro'){
       return next()
     }else{
