@@ -118,5 +118,5 @@ Es una base de datos de documentos que ofrece una gran escalabilidad y flexibili
 Diagrama donde se muestra la estructura de la base de datos y sus objetos, al igual que sus propiedades.
 
 <p align="center">
-  <img src="img/BD-Diagrama.png" alt="Diagrama BD" heigth="500px" width="500px">
+  <img src="img/Diagrama-BD.png" alt="Diagrama BD" heigth="600px" width="600px">
 </p>
