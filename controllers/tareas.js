@@ -8,11 +8,11 @@ function crearTarea(req, res, next){
 	}).catch(next)
 }
 
-function consultarListaTareas(req, res, next){
+//.populate({path:'contexto',select:'nombre descripcion id:_id'})
+function consultarTareas(req, res, next){
           Tarea.find().populate({path:'proyecto',select:'nombre descripcion id:_id'})
           .populate({path:'tag',select:'nombre descripcion id:_id'})
           .populate({path:'estatus',select:'nombre descripcion id:_id'})
-         //.populate({path:'contexto',select:'nombre descripcion id:_id'})
           .then(tarea=>{
                tarea=tarea.map(tarea=>{
               const {paths}=tarea;
@@ -25,11 +25,11 @@ function consultarListaTareas(req, res, next){
           .catch(next);
 }
 
+//.populate({path:'contexto',select:'nombre descripcion id:_id'})
 function editarTarea(req, res, next){
      Tarea.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}).populate({path:'proyecto',select:'descripcion nombre id:_id'})
      .populate({path:'estatus',select:'nombre descripcion id:_id'})
      .populate({path:'tag',select:'nombre descripcion id:_id'})
-     //.populate({path:'contexto',select:'nombre descripcion id:_id'})
     .then(tarea=>{
     if(!tarea){
       return res.status(404).send({status:'404',
@@ -56,7 +56,7 @@ function eliminarTarea(req, res, next){
 module.exports =
 {
      crearTarea,
-     consultarListaTareas,
+     consultarTareas,
      editarTarea,
      eliminarTarea
 }

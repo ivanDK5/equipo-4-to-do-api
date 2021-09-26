@@ -13,6 +13,7 @@ require('./config/passport');
 require('./models/Rol')
 require('./models/Estatus')
 require('./models/Tag')
+require('./models/UsuarioProyecto')
 
 const express = require('express');
 const app = express();

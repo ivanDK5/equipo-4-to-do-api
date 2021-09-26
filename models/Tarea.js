@@ -26,21 +26,21 @@ TareaSchema.methods.publicData = function()
     titulo,
     descripcion,
     notes,
-    proyecto_Id,
-    tag_Id,
-   // contexto_Id,
-    estatus_Id
+    proyecto,
+    tag,
+   // contexto,
+    estatus
   }=this.toObject();
   return {
     id:_id,
     titulo:titulo,
     descripcion:descripcion,
     notes:notes,
-    proyecto:proyecto_Id,
-    tag:tag_Id,
-    //contexto:contexto_Id,
-    estatus:estatus_Id
+    proyecto:proyecto,
+    tag:tag,
+    //contexto:contexto,
+    estatus:estatus
 };
-}
+};
 
 mongoose.model('Tarea',TareaSchema);
