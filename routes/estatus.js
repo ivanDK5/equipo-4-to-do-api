@@ -4,11 +4,15 @@ const {
     obtenerEstatus,
     modificarEstatus,
     eliminarEstatus,
-} = require('../controllers/estatus')
+} = require('../controllers/Estatus')
 
 router.get('/',obtenerEstatus);
+router.get('/:id', obtenerEstatus);
 router.post('/',crearEstatus);
 router.put('/:id',modificarEstatus);
 router.delete('/:id',eliminarEstatus);
 
 module.exports = router;
+
+
+

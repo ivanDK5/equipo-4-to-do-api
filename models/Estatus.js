@@ -22,7 +22,6 @@ const EstatusSchema = new mongoose.Schema({
           fechaAlta: fechaAlta,
           fechaBaja: fechaBaja
         };
-
   };
   
   mongoose.model('Estatus', EstatusSchema)

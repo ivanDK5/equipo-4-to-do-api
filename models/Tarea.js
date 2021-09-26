@@ -9,7 +9,6 @@ const TareaSchema = new mongoose.Schema({
   //id no se coloca
   titulo:{type: String, required: true},
   descripcion:{type: String, required: true},
-  //se colocó String, en lugar de Char, verificar si no causa conflicto
   notes:{type: String, required: true}, 
    //El user_id será un id en referencia a la colección de usuarios. Usuario, es el esquema generado en el Modelo
   proyecto:{type: mongoose.Schema.Types.ObjectId,ref: 'Proyecto', required: true}, 
