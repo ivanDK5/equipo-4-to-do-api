@@ -22,7 +22,7 @@ const UsuarioSchema = new mongoose.Schema({
 },{collection:'users',timestamps:true});
 
 UsuarioSchema.plugin(uniqueValidator,{message:'Ya existe'})
-
+let filters=['nombre','paterno','materno','email','username'];
 UsuarioSchema.methods.publicData = function(){
   const {
     _id,
@@ -81,9 +81,13 @@ UsuarioSchema.methods.toAuthJSON =function(){
     token:this.generaJWT()
   }
 }
-UsuarioSchema.statics.filtersAllowed=function(filter){
-  filters=['nombre','paterno','materno','email','username'];
+UsuarioSchema.statics.isFiltersAllowed=function(filter){
+  
   return  filters.includes(filter);
+}
+UsuarioSchema.statics.filtersAllowed=function(filter){
+  
+  return  filters;
 }
 
 mongoose.model('Usuario',UsuarioSchema);
