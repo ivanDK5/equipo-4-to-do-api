@@ -1,12 +1,13 @@
 const mongoose=require('mongoose');
 const Usuario=mongoose.model('Usuario');
 
-module.exports=(err,req,res,next)=>{
- Usuario.findById(req.usuario.id).populate({path:'rol',select:'nombre'})
+
+module.exports=(req,res,next)=>{
+   Usuario.findById(req.usuario.id).populate({path:'rol',select:'nombre'})
  .then( user=>{
-   if(err){next(err)}
    if(user){
     const {rol}=user;
+    console.log('rol ',rol)
     if(rol.nombre==='admin'){
       return next()
     }else{
@@ -21,6 +22,7 @@ module.exports=(err,req,res,next)=>{
       type:'Not found',
       msj:'No se encontro registro'})
    }
- 
+   
  }).catch(next)
 }
+
