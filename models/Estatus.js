@@ -9,19 +9,19 @@ const EstatusSchema = new mongoose.Schema({
 
   EstatusSchema.methods.publicData = function() {
     const{
-        _id,
-        nombre,
-        descripcion,
-        fechaAlta,
-        fechaBaja
-        }  =this.toObject();
-        return {
-          id: _id,
-          nombre: nombre,
-          descripcion: descripcion,
-          fechaAlta: fechaAlta,
-          fechaBaja: fechaBaja
-        };
+      _id,
+      nombre,
+      descripcion,
+      fechaAlta,
+      fechaBaja
+    } = this.toObject();
+    return {
+      id: _id,
+      nombre: nombre,
+      descripcion: descripcion,
+      fechaAlta: fechaAlta,
+      fechaBaja: fechaBaja,
+      };
   };
   
   mongoose.model('Estatus', EstatusSchema)

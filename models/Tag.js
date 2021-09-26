@@ -8,13 +8,22 @@ const TagSchema = new mongoose.Schema({
   }, { timestamps: true , collection : 'tags'})
 
   TagSchema.methods.publicData = function() {
+    const{
+      _id,
+      nombre,
+      descripcion,
+      fechaAlta,
+      fechaBaja 
+    } = this.toObject();
     return {
-      id: this.id,
-      nombre: this.nombre,
-      descripcion: this.descripcion,
-      fechaAlta: this.fechaAlta,
-      fechaBaja: this.fechaBaja,
+      id: _id,
+      nombre: nombre,
+      descripcion: descripcion,
+      fechaAlta: fechaAlta,
+      fechaBaja: fechaBaja,
       };
   };
-  
+
+
+
   mongoose.model('Tag', TagSchema)
