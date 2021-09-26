@@ -1,15 +1,16 @@
 const router = require('express').Router();
+const auth =require('./auth');
 const {
     crearTag,
     obtenerTag,
     modificarTag,
     eliminarTag,
-} = require('../controllers/Tags')
+} = require('../controllers/tags')
 
-router.get('/',obtenerTag);
-router.get('/:id', obtenerTag);
-router.post('/',crearTag);
-router.put('/:id',modificarTag);
-router.delete('/:id',eliminarTag);
+router.get('/',auth.requerido, obtenerTag);
+router.get('/:id', auth.requerido, obtenerTag);
+router.post('/',auth.requerido, crearTag);
+router.put('/:id',auth.requerido, modificarTag);
+router.delete('/:id',auth.requerido, eliminarTag);
 
 module.exports = router;
