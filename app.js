@@ -7,7 +7,7 @@ const mongoose=require('mongoose');
 //se agregan los modelos
 require('./models/Tarea');
 require('./models/Proyecto');
-
+require('./models/Contexto');
 require('./models/Usuario');
 require('./config/passport');
 require('./models/Rol')

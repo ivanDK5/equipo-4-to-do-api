@@ -1,26 +1,48 @@
-const Contexto = require('../models/Contexto')
+const mongoose = require('mongoose')
+const Contexto = mongoose.model('Contexto')
 
 //CRUD
-function crearContexto(req,res){
-    var Contexto= new Contexto(req.body);
-    res.status(200).send(Contexto);
+function crearContexto(req, res, next) {
+    var contexto = new Contexto(req.body)
+    contexto.save().then(contexto => {
+        res.status(200).send(contexto)
+    }).catch(next)
 }
 
-function obtenerContexto(req,res){
-    var Contexto1 = new Contexto(1,"Casa","Actividades a realizar en casa","05/Sep/2021")// en este ejemplo se da de alta nuevo Contexto
-    var Contexto2 = new Contexto(2,"Ocio","Tareas o actividades a realizar en tiempo libre","05/Sep/2021")// en este ejemplo se da de alta nuevo Contexto
-    res.send([Contexto1,Contexto2]);
+function obtenerContexto(req, res, next) {
+    if (req.params.id) {
+        Contexto.findById(req.params.id).then(contexto => {
+            res.send(contexto)
+        }).catch(next)
+    } else {
+        Contexto.find().then(contexto => {
+            res.send(contexto)
+        }).catch(next)
+    }
 }
 
-function modificarContexto(req,res){
-    var Contexto = new Contexto(req.params.id)//aquí se colocan los parámetros a modificar
-    var modificaciones = req.body
-    Contexto = {...Contexto,...modificaciones}
-    res.send(Contexto);
+function modificarContexto(req, res, next) {
+    Contexto.findById(req.params.id).then(contexto => {
+        if (!contexto) { return res.sendStatus(401); }
+        let nuevaInfo = req.body
+        if (typeof nuevaInfo.nombre !== 'undefined')
+            contexto.nombre = nuevaInfo.nombre
+        if (typeof nuevaInfo.descripcion !== 'undefined')
+            contexto.descripcion = nuevaInfo.descripcion
+        if (typeof nuevaInfo.fechaAlta !== 'undefined')
+            contexto.fechaAlta = nuevaInfo.fechaAlta
+        if (typeof nuevaInfo.fechaBaja !== 'undefined')
+            contexto.fechaBaja = nuevaInfo.fechaBaja
+        contexto.save().then(updated => {
+            res.status(201).json(updated.publicData())
+        }).catch(next)
+    }).catch(next)
 }
 
-function eliminarContexto(req,res){
-    res.status(200).send(`El Contexto ${req.params.id} se eliminó`);
+function eliminarContexto(req, res, next) {
+    Contexto.findOneAndDelete({ _id: req.params.id }).then(r => {
+        res.status(200).send(`El contexto ${req.params.id} se eliminó: ${r}`);
+    })
 }
 
 module.exports = {
