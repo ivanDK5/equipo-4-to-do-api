@@ -10,9 +10,9 @@ const UsuarioSchema = new mongoose.Schema({
     match:[/^[A-Za-z]+[0-9]*[A-Za-z0-9]*$/, 'username invalido'],
     index:true
   },
-  nombre: {type:String,required:true},
-  apellidoPaterno: {type:String, required:true},
-  apellidoMaterno: {type:String, required:true},
+  nombre: {type:String,lowercase:true,required:true},
+  paterno: {type:String,lowercase:true, required:true},
+  materno: {type:String,lowercase:true, required:true},
   email: {type:String, unique:[true,'falta email'],match:[/\S+@\S+.\S+/, "Email invalido"],index:true},
   telefono:{type:Number,match:[/[0-9]+$/,'Telefono no valido']},
   genero:{type:String,enum:['M','F'],uppercase:[true,'Requiere uso de mayusculas'],required:true},
@@ -30,8 +30,8 @@ UsuarioSchema.methods.publicData = function(){
     email,
     telefono,
     nombre,
-    apellidoPaterno,
-    apellidoMaterno,
+    paterno,
+    materno,
     genero, 
     rol_id,
     
@@ -42,8 +42,8 @@ UsuarioSchema.methods.publicData = function(){
     email:email,
     telefono:telefono,
     nombre:nombre,
-    apellidoPaterno:apellidoPaterno,
-    apellidoMaterno:apellidoMaterno,
+    paterno:paterno,
+    materno:materno,
     genero:genero,
     rol:rol_id
   }
@@ -80,6 +80,10 @@ UsuarioSchema.methods.toAuthJSON =function(){
     email:this.email,
     token:this.generaJWT()
   }
+}
+UsuarioSchema.statics.filtersAllowed=function(filter){
+  filters=['nombre','paterno','materno','email','username'];
+  return  filters.includes(filter);
 }
 
 mongoose.model('Usuario',UsuarioSchema);
