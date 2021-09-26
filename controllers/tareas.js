@@ -10,7 +10,7 @@ function crearTarea(req, res, next){
 
 function consultarListaTareas(req, res, next){
           Tarea.find().populate({path:'proyecto',select:'nombre descripcion id:_id'})
-        //  .populate({path:'tag',select:'nombre descripcion id:_id'})
+          .populate({path:'tag',select:'nombre descripcion id:_id'})
           .populate({path:'estatus',select:'nombre descripcion id:_id'})
          //.populate({path:'contexto',select:'nombre descripcion id:_id'})
           .then(tarea=>{
@@ -28,7 +28,7 @@ function consultarListaTareas(req, res, next){
 function editarTarea(req, res, next){
      Tarea.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}).populate({path:'proyecto',select:'descripcion nombre id:_id'})
      .populate({path:'estatus',select:'nombre descripcion id:_id'})
-     //.populate({path:'tag',select:'nombre descripcion id:_id'})
+     .populate({path:'tag',select:'nombre descripcion id:_id'})
      //.populate({path:'contexto',select:'nombre descripcion id:_id'})
     .then(tarea=>{
     if(!tarea){

@@ -10,9 +10,10 @@ function crearProyecto(req, res, next)
 }
 
 function consultarListaProyecto(req, res, next){
-    //  .populate({path:'tag',select:'nombre descripcion id:_id'})
+    
          //.populate({path:'contexto',select:'nombre descripcion id:_id'})
     Proyecto.find().populate({path:'estatus',select:'nombre descripcion id:_id'})
+    .populate({path:'tag',select:'nombre descripcion id:_id'})
           .then(proyecto=>{
             proyecto=proyecto.map(proyecto=>{
               const {paths}=proyecto;
@@ -27,9 +28,10 @@ function consultarListaProyecto(req, res, next){
 }
 
 function editarProyecto(req, res, next)
-{    //.populate({path:'tag',select:'nombre descripcion id:_id'})
+{    
     //.populate({path:'contexto',select:'nombre descripcion id:_id'})
     Proyecto.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}).populate({path:'estatus',select:'descripcion nombre id:_id'})
+    .populate({path:'tag',select:'nombre descripcion id:_id'})
    .then(proyecto=>{
    if(!proyecto){
      return res.status(404).send({status:'404',
