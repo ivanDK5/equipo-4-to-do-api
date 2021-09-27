@@ -76,7 +76,7 @@ function editarUsuario(req, res,next){
   .then(user=>{
     if(!user){
       return res.status(404).send({status:'404',
-      type:'Forbidden',
+      type:'Not Found',
       msj:'No se encontro registro'
     })
     }
