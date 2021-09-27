@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const usuarioProyecto=mongoose.model('usuarioProyecto');
+const usuarioProyecto=mongoose.model('UsuarioProyecto');
 
 module.exports=(req,res,next)=>{ 
   if(req.query){
