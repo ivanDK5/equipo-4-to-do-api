@@ -22,7 +22,7 @@ const UsuarioSchema = new mongoose.Schema({
 },{collection:'users',timestamps:true});
 
 UsuarioSchema.plugin(uniqueValidator,{message:'Ya existe'})
-let filters=['nombre','paterno','materno','email','username'];
+let filters=['nombre','paterno','materno','email','username','limit'];
 UsuarioSchema.methods.publicData = function(){
   const {
     _id,
@@ -48,7 +48,31 @@ UsuarioSchema.methods.publicData = function(){
     rol:rol_id
   }
 }
-
+UsuarioSchema.statics.publicData = function(obj){
+  const {
+    _id,
+    username,
+    email,
+    telefono,
+    nombre,
+    paterno,
+    materno,
+    genero, 
+    rol_id,
+    
+  }=obj;
+  return {
+    id:_id,
+    username:username,
+    email:email,
+    telefono:telefono,
+    nombre:nombre,
+    paterno:paterno,
+    materno:materno,
+    genero:genero,
+    rol:rol_id
+  }
+}
 UsuarioSchema.methods.createPassword= function(password){
   this.salt =crypto.randomBytes(16).toString('hex');
   this.hash =crypto.pbkdf2Sync(password,this.salt,10000,512,'sha512')
@@ -85,7 +109,7 @@ UsuarioSchema.statics.isFiltersAllowed=function(filter){
   
   return  filters.includes(filter);
 }
-UsuarioSchema.statics.filtersAllowed=function(filter){
+UsuarioSchema.statics.filtersAllowed=function(){
   
   return  filters;
 }
