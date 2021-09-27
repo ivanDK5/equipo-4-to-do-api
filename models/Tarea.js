@@ -17,7 +17,7 @@ const TareaSchema = new mongoose.Schema({
   estatus:{type: mongoose.Schema.Types.ObjectId,ref: 'Estatus', required: true}   
 },{timestamps: true, collection: 'tasks'}); //en referencia a la colección de tareas de la db en Mongo
 
-
+let filters=['titulo','descripcion','notes'];
 TareaSchema.methods.publicData = function()
 {
 
@@ -42,5 +42,16 @@ TareaSchema.methods.publicData = function()
     estatus:estatus
 };
 };
+
+
+TareaSchema.statics.isFiltersAllowed=function(filter){
+  
+  return  filters.includes(filter);
+}
+TareaSchema.statics.filtersAllowed=function(filter){
+  
+  return  filters;
+}
+
 
 mongoose.model('Tarea',TareaSchema);

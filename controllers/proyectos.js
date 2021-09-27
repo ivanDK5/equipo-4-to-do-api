@@ -9,21 +9,46 @@ function crearProyecto(req, res, next)
           }).catch(next)
 }
 
-function consultarListaProyecto(req, res, next){
-    
-         //.populate({path:'contexto',select:'nombre descripcion id:_id'})
+function consultarProyectos(req, res, next){
+  if(req.query){
+   
     Proyecto.find().populate({path:'estatus',select:'nombre descripcion id:_id'})
     .populate({path:'tag',select:'nombre descripcion id:_id'})
-          .then(proyecto=>{
-            proyecto=proyecto.map(proyecto=>{
-              const {paths}=proyecto;
-              proyecto=proyecto.publicData();
-              proyecto.paths=paths;
-              return proyecto;
-            })
-            res.status(200).send(proyecto)
-          })
-          .catch(next);
+    .then(proyecto=>{console.log(req.query);
+      
+        if(req.query){
+          nombre=req.query.nombre;
+          if(nombre){
+            proyecto=proyecto.filter(proyecto=>{return proyecto.nombre===nombre});
+          }
+          descripcion=req.query.descripcion;
+          if(descripcion){
+            proyecto=proyecto.filter(proyecto=>{return proyecto.descripcion===descripcion});
+          }
+          
+        }
+      
+      if(proyecto.length!==0){
+        proyecto=proyecto.map(proyecto=>{
+           
+          const {pob}=proyecto;
+          proyecto=proyecto.publicData();
+          proyecto.pob=pob;
+         
+          return proyecto;
+        })
+        return res.status(200).send(proyecto);
+      }else{
+        return res.status(404).send({
+          status:"404",
+          type:"Not found",
+          msj:"Registro no encontrado"
+        })
+      }
+    })
+    .catch(next);
+  }
+ 
 
 }
 
@@ -61,7 +86,7 @@ function recibirProyecto(req, res, next){}
 module.exports =
 {
     crearProyecto,
-    consultarListaProyecto,
+    consultarProyectos,
     editarProyecto,
     eliminarProyecto,
     asignarTareas,
