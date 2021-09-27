@@ -92,7 +92,7 @@ function editarUsuario(req, res,next){
 function eliminarUsuario(req, res,next){
   Usuario.findByIdAndDelete({_id: req.usuario.id})
   .then(user=>{
-    user.msj='Usuario modificado exitosamente',
+    user.msj='Usuario eliminado exitosamente',
     res.status(200).json(user);
   })
   .catch(next)
