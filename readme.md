@@ -121,6 +121,6 @@ Diagrama donde se muestra la estructura de la base de datos y sus objetos, al ig
   <img src="img/Diagrama-BD.png" alt="Diagrama BD" heigth="600px" width="600px">
 </p>
 ### Swagger
-Aquí dejamos el link de nuestro Swagger:
+Aquí dejamos el link de nuestro Swagger: 
 https://app.swaggerhub.com/apis/rcarreno90/ToDoAPI/0.0.1
 
