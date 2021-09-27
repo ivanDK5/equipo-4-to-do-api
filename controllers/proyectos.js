@@ -12,9 +12,10 @@ function crearProyecto(req, res, next)
 function consultarProyectos(req, res, next){
   if(req.query){
    
-    Proyecto.find().populate({path:'estatus',select:'nombre descripcion id:_id'})
-    .populate({path:'tag',select:'nombre descripcion id:_id'})
-    .then(proyecto=>{console.log(req.query);
+    Proyecto.find().populate({path:'tag',select:'nombre descripcion id:_id'})
+    .populate({path:'contexto',select:'nombre descripcion id:_id'}) //
+    .populate({path:'estatus',select:'nombre descripcion id:_id'})
+    .then(proyecto=>{//console.log(req.query);
       
         if(req.query){
           nombre=req.query.nombre;
@@ -53,10 +54,10 @@ function consultarProyectos(req, res, next){
 }
 
 function editarProyecto(req, res, next)
-{    
-    //.populate({path:'contexto',select:'nombre descripcion id:_id'})
-    Proyecto.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}).populate({path:'estatus',select:'descripcion nombre id:_id'})
-    .populate({path:'tag',select:'nombre descripcion id:_id'})
+{   
+    Proyecto.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}).populate({path:'tag',select:'nombre descripcion id:_id'})
+    .populate({path:'contexto',select:'nombre descripcion id:_id'}) //
+    .populate({path:'estatus',select:'nombre descripcion id:_id'})
    .then(proyecto=>{
    if(!proyecto){
      return res.status(404).send({status:'404',
@@ -78,9 +79,7 @@ function eliminarProyecto(req, res, next){
 	.catch(next)
 }
 
-function asignarTareas(req, res, next){}
 
-function recibirProyecto(req, res, next){}
 
 
 module.exports =
@@ -89,6 +88,4 @@ module.exports =
     consultarProyectos,
     editarProyecto,
     eliminarProyecto,
-    asignarTareas,
-    recibirProyecto
 }
