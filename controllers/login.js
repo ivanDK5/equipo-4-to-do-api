@@ -34,7 +34,17 @@ function login(req,res,next){
   })(req,res,next);
 }
 
+function deleteAccount(req, res,next){
+  Usuario.findByIdAndDelete({_id: req.usuario.id})
+  .then(user=>{
+    user.msj='Usuario eliminado exitosamente',
+    res.status(200).json(user);
+  })
+  .catch(next)
+}
+
 module.exports={
   signUp,
-  login
+  login,
+  deleteAccount
 }
