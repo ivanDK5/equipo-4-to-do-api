@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const adminMiddleware =require('../middleware/admin');
-const userMiddleware =require('../middleware/usuario');
+
 const auth =require('./auth');
 const {
     crearContexto,
@@ -9,10 +9,10 @@ const {
     eliminarContexto
 } = require('../controllers/contextos');
 
-router.get('/',[auth.requerido,userMiddleware],obtenerContexto);
-router.get('/:id',[auth.requerido,userMiddleware], obtenerContexto);
-router.post('/',[auth.requerido,userMiddleware],crearContexto);
-router.put('/:id',[auth.requerido,userMiddleware],modificarContexto);
-router.delete('/:id',[auth.requerido,userMiddleware],eliminarContexto);
+router.get('/',[auth.requerido,adminMiddleware],obtenerContexto);
+router.get('/:id',[auth.requerido,adminMiddleware], obtenerContexto);
+router.post('/',[auth.requerido,adminMiddleware],crearContexto);
+router.put('/:id',[auth.requerido,adminMiddleware],modificarContexto);
+router.delete('/:id',[auth.requerido,adminMiddleware],eliminarContexto);
 
 module.exports = router;

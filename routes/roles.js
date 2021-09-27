@@ -1,4 +1,6 @@
 const router =require('express').Router();
+const admin = require('../middleware/admin');
+
 const auth=require('./auth');
 const{
   crearRol,
@@ -7,9 +9,9 @@ const{
   eliminarRol,
 } =require('../controllers/roles');
 
-router.get('/:id?'[auth.requerido],obtenerRoles);
-router.post('/',[auth.requerido],crearRol);
-router.put('/:id',[auth.requerido],modificarRol);
-router.delete('/:id',[auth.requerido],eliminarRol);
+router.get('/:id?',[auth.requerido,admin],obtenerRoles);
+router.post('/',[auth.requerido,admin],crearRol);
+router.put('/:id',[auth.requerido,admin],modificarRol);
+router.delete('/:id',[auth.requerido,admin],eliminarRol);
 
 module.exports=router;
