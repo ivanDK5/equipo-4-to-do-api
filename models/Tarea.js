@@ -13,7 +13,7 @@ const TareaSchema = new mongoose.Schema({
    //El user_id será un id en referencia a la colección de usuarios. Usuario, es el esquema generado en el Modelo
   proyecto:{type: mongoose.Schema.Types.ObjectId,ref: 'Proyecto', required: true}, 
   tag:{type: mongoose.Schema.Types.ObjectId,ref: 'Tag', required: true},
- // contexto:{type: mongoose.Schema.Types.ObjectId,ref: 'Contexto', required: true},
+  contexto:{type: mongoose.Schema.Types.ObjectId,ref: 'Contexto', required: true}, //
   estatus:{type: mongoose.Schema.Types.ObjectId,ref: 'Estatus', required: true}   
 },{timestamps: true, collection: 'tasks'}); //en referencia a la colección de tareas de la db en Mongo
 
@@ -28,7 +28,7 @@ TareaSchema.methods.publicData = function()
     notes,
     proyecto,
     tag,
-   // contexto,
+    contexto, //
     estatus
   }=this.toObject();
   return {
@@ -38,7 +38,7 @@ TareaSchema.methods.publicData = function()
     notes:notes,
     proyecto:proyecto,
     tag:tag,
-    //contexto:contexto,
+    contexto:contexto, //
     estatus:estatus
 };
 };

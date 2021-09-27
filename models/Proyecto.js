@@ -8,7 +8,7 @@ const ProyectoSchema =  new mongoose.Schema({
     nombre:{type: String, required: true},
     descripcion:{type: String, required: true},
     tag:{type: mongoose.Schema.Types.ObjectId,ref:'Tag', required: true},
-  //  contexto: {type: mongoose.Schema.Types.ObjectId,ref: 'Contexto', required: true}, ESPERANDO
+    contexto: {type: mongoose.Schema.Types.ObjectId,ref: 'Contexto', required: true}, //
     estatus:{type: mongoose.Schema.Types.ObjectId,ref:'Estatus', required: true}   
 },{timestamps: true, collection: 'projects'});
 
@@ -20,7 +20,7 @@ ProyectoSchema.methods.publicData = function()
   nombre,
   descripcion,
   tag,
-  //contexto,
+  contexto, //
   estatus
   }  =this.toObject();
   return {
@@ -28,7 +28,7 @@ ProyectoSchema.methods.publicData = function()
     nombre:nombre,
     descripcion:descripcion,
     tag:tag,
-    //contexto:contexto,
+    contexto:contexto, //
     estatus:estatus
   };
 };
