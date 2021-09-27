@@ -11,19 +11,49 @@ function crearUsuarioProyecto(req, res, next)
 
 function consultarUsuariosProyectos(req, res, next){
     
- UsuarioProyecto.find().populate({path:'usuario',select:'username email telefono nombre apellidoPaterno apellidoMaterno genero id:_id'})
-.populate({path:'proyecto',select:'nombre descripcion id:_id'})
-.populate({path:'rol',select:'nombre descripcion id:_id'})
-     .then(usproyecto=>{
+  if(req.query){
+   
+    UsuarioProyecto.find().find().populate({path:'usuario',select:'username email telefono nombre apellidoPaterno apellidoMaterno genero id:_id'})
+    .populate({path:'proyecto',select:'nombre descripcion id:_id'})
+    .populate({path:'rol',select:'nombre descripcion id:_id'})
+    .then(usproyecto=>{console.log(req.query);
+      
+        if(req.query){
+          usuario=req.query.usuario;
+          if(usuario){
+            usproyecto=usproyecto.filter(usproyecto=>{return usproyecto.usuario===usuario});
+          }
+          rol=req.query.rol;
+          if(rol){
+            usproyecto=usproyecto.filter(usproyecto=>{return usproyecto.rol===rol});
+          }
+          
+          proyecto=req.query.proyecto;
+          if(proyecto){
+            usproyecto=usproyecto.filter(usproyecto=>{return usproyecto.proyecto===proyecto});
+          }
+        }
+      
+      if(usproyecto.length!==0){
         usproyecto=usproyecto.map(usproyecto=>{
-         const {paths}=usproyecto;
-         usproyecto=usproyecto.publicData();
-         usproyecto.paths=paths;
-         return usproyecto;
-       })
-       res.status(200).send(usproyecto)
-     })
-     .catch(next);
+           
+          const {pob}=usproyecto;
+          usproyecto=usproyecto.publicData();
+          usproyecto.pob=pob;
+         
+          return usproyecto;
+        })
+        return res.status(200).send(usproyecto);
+      }else{
+        return res.status(404).send({
+          status:"404",
+          type:"Not found",
+          msj:"Registro no encontrado"
+        })
+      }
+    })
+    .catch(next);
+  }
 
 }
 

@@ -8,6 +8,8 @@ const UsuarioProyectoSchema = new mongoose.Schema({
     proyecto: {type: mongoose.Schema.Types.ObjectId,ref: 'Proyecto', required: true},
 },{timestamps: true, collection: 'userProjects'});
 
+
+let filters=['usuario','rol','proyecto'];
 UsuarioProyectoSchema.methods.publicData = function()
 {
     const{
@@ -18,10 +20,19 @@ UsuarioProyectoSchema.methods.publicData = function()
     }= this.toObject();
     return{
         id: _id,
-        usuario: usuario,
-        rol: rol,
-        proyecto: proyecto
+        usuario:usuario,
+        rol:rol,
+        proyecto:proyecto
     };
 };
+
+UsuarioProyectoSchema.statics.isFiltersAllowed=function(filter){
+  
+    return  filters.includes(filter);
+  }
+  UsuarioProyectoSchema.statics.filtersAllowed=function(filter){
+    
+    return  filters;
+  }
 
 mongoose.model('UsuarioProyecto', UsuarioProyectoSchema);

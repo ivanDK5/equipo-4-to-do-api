@@ -12,7 +12,7 @@ const ProyectoSchema =  new mongoose.Schema({
     estatus:{type: mongoose.Schema.Types.ObjectId,ref:'Estatus', required: true}   
 },{timestamps: true, collection: 'projects'});
 
-
+let filters=['nombre','descripcion'];
 ProyectoSchema.methods.publicData = function()
 {
   const{
@@ -25,12 +25,23 @@ ProyectoSchema.methods.publicData = function()
   }  =this.toObject();
   return {
     id: _id,
-    nombre: nombre,
-    descripcion: descripcion,
-    tag: tag,
-    //contexto: contexto,
-    estatus: estatus
+    nombre:nombre,
+    descripcion:descripcion,
+    tag:tag,
+    //contexto:contexto,
+    estatus:estatus
   };
 };
+
+
+ProyectoSchema.statics.isFiltersAllowed=function(filter){
+  
+  return  filters.includes(filter);
+}
+ProyectoSchema.statics.filtersAllowed=function(filter){
+  
+  return  filters;
+}
+
 
 mongoose.model('Proyecto', ProyectoSchema);

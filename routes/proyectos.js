@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const {
     crearProyecto,
-    consultarListaProyecto,
+    consultarProyectos,
     editarProyecto,
     eliminarProyecto,
     asignarTareas,
@@ -10,7 +10,7 @@ const {
 } = require('../controllers/proyectos');
 
 router.post('/',crearProyecto);
-router.get('/',consultarListaProyecto);
+router.get('/',consultarProyectos);
 router.put('/:id',editarProyecto);
 router.delete('/:id',eliminarProyecto);
 router.post('/',asignarTareas);
