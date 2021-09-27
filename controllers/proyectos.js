@@ -78,10 +78,6 @@ function eliminarProyecto(req, res, next){
 	.catch(next)
 }
 
-function asignarTareas(req, res, next){}
-
-function recibirProyecto(req, res, next){}
-
 
 module.exports =
 {
@@ -89,6 +85,5 @@ module.exports =
     consultarProyectos,
     editarProyecto,
     eliminarProyecto,
-    asignarTareas,
-    recibirProyecto
+ 
 }
