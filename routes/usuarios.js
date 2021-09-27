@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const adminMiddleware =require('../middleware/admin');
 const userMiddleware =require('../middleware/usuario');
+
 const auth =require('./auth');
 const {
   obtenerUsuarios,
@@ -10,9 +11,10 @@ const {
 } = require('../controllers/usuario');
 
 
+
 router.get('/',[auth.requerido,userMiddleware],obtenerUsuarios);
 router.get('/:id',[auth.requerido],obtenerUsuario); 
 router.put('/:id',[auth.requerido],editarUsuario);
-router.delete('/:id',[auth.requerido],eliminarUsuario);
+
 
 module.exports= router;

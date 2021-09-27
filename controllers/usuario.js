@@ -3,7 +3,7 @@ const Usuario =mongoose.model('Usuario');
 const {filters}=require('../resources/filters');
 
 function obtenerUsuarios(req, res,next){
-  if(req.query){
+  if(Object.keys(req.query).length!==0){
    
     Usuario.aggregate(filters(Usuario.isFiltersAllowed,req.query))
     .then(user=>{
@@ -89,14 +89,6 @@ function editarUsuario(req, res,next){
   }).catch(next)
 } 
 
-function eliminarUsuario(req, res,next){
-  Usuario.findByIdAndDelete({_id: req.usuario.id})
-  .then(user=>{
-    user.msj='Usuario eliminado exitosamente',
-    res.status(200).json(user);
-  })
-  .catch(next)
-}
 
 
 
@@ -104,5 +96,5 @@ module.exports={
   obtenerUsuarios,
   obtenerUsuario,
   editarUsuario,
-  eliminarUsuario
+ 
 }
