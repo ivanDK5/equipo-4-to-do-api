@@ -9,7 +9,7 @@ const{
   eliminarRol,
 } =require('../controllers/roles');
 
-router.get('/:id?',[auth.requerido,admin],obtenerRoles);
+router.get('/:id?',obtenerRoles);
 router.post('/',[auth.requerido,admin],crearRol);
 router.put('/:id',[auth.requerido,admin],modificarRol);
 router.delete('/:id',[auth.requerido,admin],eliminarRol);
